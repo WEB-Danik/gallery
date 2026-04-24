@@ -1,0 +1,69 @@
+/* Fonts Family */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* 1. Box sizing */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* 2. Remove default margins */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* 3. Body settings */
+body {
+    min-height: 100vh;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* 4. Remove list styles */
+ul,
+ol {
+    list-style: none;
+}
+
+/* 5. Remove link styles */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* 6. Make images responsive */
+img,
+picture {
+    max-width: 100%;
+    display: block;
+}
+
+/* 7. Form elements reset */
+input,
+button,
+textarea,
+select {
+    font: inherit;
+    border: none;
+    outline: none;
+    background: none;
+}
+
+/* 8. Buttons */
+button {
+    cursor: pointer;
+}
+
+/* 9. Table reset */
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}

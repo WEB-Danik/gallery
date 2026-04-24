@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="icon" type="image/svg+xml" href="./src/assets/icons/picture.png"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>gallery</title>
+    <link rel="stylesheet" href="src/styles/globall.css"/>
+    <link rel="stylesheet" href="src/styles/search_form.css"/>
+    <link rel="stylesheet" href="src/styles/load_more.css"/>
+    <script type="module" src="src/components/render-list-photo.js" defer></script>
+    <script type="module" src="src/components/pixabay-api.js" defer></script>
+</head>
+<body>
+<div class="wrapper">
+    <header class="header">
+        <!-- Search input -->
+        <form name="search_form_container" autocomplete="off" novalidate>
+            <!-- Form elements -->
+            <label>
+                <input type="text"
+                       id="name_photo"
+                       placeholder="Search images..."
+                       minlength="3"
+                       required
+                />
+            </label>
+            <button class="search" type="submit">Search</button>
+        </form>
+    </header>
+    <main class="gallery">
+        <!-- Block photo -->
+        <ul class="gallery_list"></ul>
+        <button class="btn_load_more" type="submit">Load more</button>
+    </main>
+</div>
+</body>
+</html>

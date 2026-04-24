@@ -1,0 +1,10 @@
+.btn_load_more {
+    width: 125px;
+    height: 40px;
+    border-radius: 8px;
+
+    font-family: Montserrat;
+    color: white;
+    font-weight: 500;
+    background: rgba(78, 117, 255, 1);
+}

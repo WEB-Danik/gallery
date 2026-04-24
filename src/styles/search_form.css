@@ -1,0 +1,19 @@
+#name_photo {
+    border: 1px solid rgba(128, 128, 128, 1);
+    border-radius: 4px;
+    padding: 8px 16px;
+    outline: none;
+}
+#name_photo:focus {
+    border: 1px solid rgb(17, 173, 3);
+}
+.search{
+    width: 91px;
+    height: 40px;
+    border-radius: 8px;
+
+    font-family: Montserrat;
+    color: white;
+    font-weight: 500;
+    background: rgba(78, 117, 255, 1);
+}
