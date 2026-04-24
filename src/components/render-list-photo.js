@@ -1,7 +1,4 @@
 "use strict";
-const listPhoto = document.querySelector('.gallery_list');
+import fetchData from "./pixabay-api.js";
 
-const photo = document.createElement('li');
-photo.textContent = "My Photo";
-
-listPhoto.append(photo);
+fetchData('cat')

@@ -2,9 +2,9 @@
 
 const API_KEY = '55578841-0743af66a955dc38fb526d14a';
 
-const fetchData = async () => {
+const fetchData = async (query) => {
    try {
-       const response = await fetch(`https://pixabay.com/api/?key=${API_KEY}`);
+       const response = await fetch(`https://pixabay.com/api/?key=${API_KEY}&q=${query}&image_type=photo`);
        const data = await response.json();
 
        if (!response.ok) {
@@ -17,7 +17,7 @@ const fetchData = async () => {
    };
 };
 
-fetchData();
+export default fetchData;
 
 
 // fetch(`https://pixabay.com/api/?key=${API_KEY}`, {
