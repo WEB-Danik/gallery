@@ -1,0 +1,9 @@
+.gallery_list {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+}
+.gallery_item {
+    width: 360px;
+    height: 200px;
+}

@@ -11,7 +11,7 @@ const fetchData = async (query) => {
            throw new Error(`HTTP Error: ${response.status}`);
        }
 
-       console.log(data);
+       return data;
    } catch (e) {
        console.error(e);
    };
