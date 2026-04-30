@@ -14,7 +14,7 @@ const fetchData = async (query) => {
        return data;
    } catch (e) {
        console.error(e);
-   };
+   }
 };
 
 export default fetchData;
