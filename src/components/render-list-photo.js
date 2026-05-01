@@ -1,18 +1,16 @@
 "use strict";
 import fetchData from "./pixabay-api.js";
+import {refs} from "./refs.js";
 
-const form = document.getElementById('search_form_container');
-const galleryList = document.querySelector(".gallery_list");
 
-const listPhotos = async (query = "") => {
+let currentPage = 1;
+let currentQuery = "";
+const PER_PAGE = 15;
 
-    const getData = await fetchData(query);
-
-    console.log('Data', getData)
-
-    const renderGalleryItems = getData.hits
-        .map(photo => {
-            return `
+const createGalleryList = (photos) => {
+  return photos
+      .map(photo => {
+          return `
                 <li class="gallery_item">
                  <button type="button" class="btn_photo_modal">
                   <img src="${photo.webformatURL}" alt="photo" width="360" height="200">
@@ -33,22 +31,53 @@ const listPhotos = async (query = "") => {
                  </button>
                 </li>
             `;
-        })
-        .join("");
+      })
+      .join("");
+}
 
-    galleryList.innerHTML = renderGalleryItems;
+const updateLoadMoreBtn = (totalHits) => {
+    const totalPages = Math.ceil(totalHits / PER_PAGE);
+    console.log('totalPages', totalPages);
+    if (currentPage >= totalPages) {
+        refs.loadMore.hidden = true;
+
+        return;
+    };
+    refs.loadMore.hidden = false;
 };
 
-form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const query  = e.target.elements.name_photo.value.trim();
+const listPhotos = async (query = "", page = 1) => {
+    const getData = await fetchData(query, page);
 
-    if (!query) {
-        await listPhotos("");
-        return;
+    console.log("Data", getData);
+
+    const renderGalleryItems = createGalleryList(getData.hits);
+
+    if (page === 1) {
+        refs.galleryList.innerHTML = renderGalleryItems;
+    } else {
+        refs.galleryList.insertAdjacentHTML("beforeend", renderGalleryItems);
     }
 
-    await listPhotos(query);
+    updateLoadMoreBtn(getData.totalHits);
+};
+
+
+refs.form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const query = e.target.elements.name_photo.value.trim();
+
+    if (!query) {
+        await listPhotos(currentQuery, currentPage);
+        return ;
+    };
+
+    await listPhotos(query, currentPage);
 });
 
-listPhotos("");
+refs.loadMore.addEventListener('click',  async e => {
+    currentPage += 1;
+    await listPhotos(currentQuery, currentPage);
+});
+
+listPhotos("", currentPage);
