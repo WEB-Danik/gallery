@@ -1,6 +1,8 @@
 "use strict";
 import fetchData from "./pixabay-api.js";
 import {refs} from "./refs.js";
+import iziToast from "izitoast";
+import "izitoast/dist/css/iziToast.min.css";
 
 
 let currentPage = 1;
@@ -41,6 +43,14 @@ const updateLoadMoreBtn = (totalHits) => {
     if (currentPage >= totalPages) {
         refs.loadMore.hidden = true;
 
+        iziToast.show({
+            icon: 'fas fa-exclamation',
+            class: 'my-toast',
+            message: 'We\'re sorry, but you\'ve reached the end of search results.\n',
+            color: 'orange',
+            progressBar: false,
+        });
+
         return;
     };
     refs.loadMore.hidden = false;
@@ -67,10 +77,8 @@ refs.form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const query = e.target.elements.name_photo.value.trim();
 
-    if (!query) {
-        await listPhotos(currentQuery, currentPage);
-        return ;
-    };
+    currentPage = 1;
+    currentQuery = query;
 
     await listPhotos(query, currentPage);
 });
